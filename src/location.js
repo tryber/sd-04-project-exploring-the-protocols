@@ -13,8 +13,8 @@ const getLocationInfos = (clientIP, cb) => {
     res.on('data', (locationDataRaw) => {
       const locationData = JSON.parse(locationDataRaw.toString());
 
-      console.log('Location data:');
-      console.log(locationData);
+      // console.log('Location data:');
+      // console.log(locationData);
 
       cb(locationData);
     });
