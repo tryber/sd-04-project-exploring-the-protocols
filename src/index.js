@@ -7,7 +7,6 @@ const os = require('os');
 // console.log(os.cpus()) // cpus
 // console.log(os.totalmem()/1024/1024/1024) // total memory
 
-
 const { getLocationInfos } = require('./location');
 
 const getHeaderValue = (data, header) => {
@@ -54,10 +53,20 @@ const server = net.createServer((socket) => {
       socket.write(`<p>INFO ABOUT SYSTEM</p>`);
       socket.write(`<p data-testid="cpu">CPU Model: ${os.cpus()[0].model}</p>`);
       socket.write(`<p data-testid="cpu">CPU Cores: ${os.cpus().length}</p>`);
-      socket.write(`<p data-testid="cpu">CPU Speed: ${os.cpus()[0].speed} MHz</p>`);
-      socket.write(`<p data-testid="arch">OS: ${os.platform()}, ${os.arch()}, ${os.release}</p>`);
+      socket.write(
+        `<p data-testid="cpu">CPU Speed: ${os.cpus()[0].speed} MHz</p>`,
+      );
+      socket.write(
+        `<p data-testid="arch">OS: ${os.platform()}, ${os.arch()}, ${
+          os.release
+        }</p>`,
+      );
       // dividir 3 x por 1024 para pegar a qtd de GB
-      socket.write(`<p data-testid="memory">Memory: ${os.totalmem()/1024/1024/1024} Gb</p>`);
+      socket.write(
+        `<p data-testid="memory">Memory: ${
+          os.totalmem() / 1024 / 1024 / 1024
+        } Gb</p>`,
+      );
       socket.write(
         '<iframe src="https://giphy.com/embed/l3q2zVr6cu95nF6O4" width="480" height="236" frameBorder="0" class="giphy-embed" allowFullScreen></iframe>',
       );
