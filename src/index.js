@@ -50,7 +50,7 @@ const server = net.createServer((socket) => {
       socket.write(`<p data-testid="country">${country}</p>`);
       socket.write(`<p data-testid="company">${company}</p>`);
       socket.write(`<p data-testid="device">${device}</p>`);
-      socket.write(`<p>INFO ABOUT SYSTEM</p>`);
+      socket.write('<p>INFO ABOUT SYSTEM</p>');
       socket.write(`<p data-testid="cpu">CPU Model: ${os.cpus()[0].model}</p>`);
       socket.write(`<p data-testid="cpu">CPU Cores: ${os.cpus().length}</p>`);
       socket.write(
