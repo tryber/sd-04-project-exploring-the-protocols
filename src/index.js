@@ -15,7 +15,7 @@ const startOfResponse = null;
 const endOfResponse = null;
 
 const server = net.createServer((socket) => {
-  socket.on('data', (_) => {
+  socket.on('data', () => {
     const clientIP = null;
 
     getLocationInfos(clientIP, (_) => {
