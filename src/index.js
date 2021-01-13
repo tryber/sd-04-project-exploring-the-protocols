@@ -18,6 +18,8 @@ const server = net.createServer((socket) => {
   socket.on('data', (data) => {
     const clientIP = getHeaderValue(data.toString(), 'X-Forwarded-For');
 
+    const userAgent = getHeaderValue(data.toString(), 'User-Agent');
+
     getLocationInfos(clientIP, (locationData) => {
       socket.write(startOfResponse);
       socket.write(
@@ -26,6 +28,7 @@ const server = net.createServer((socket) => {
       socket.write('<title>Trybe 🚀</title></head><body>');
       socket.write('<H1>Explorando os Protocolos 🧐🔎</H1>');
       socket.write(`<h2 data-testid="ip">IP: ${clientIP}</h2>`);
+      socket.write(`<h2 data-testid="device">USER AGENT: ${userAgent}</h2>`);
       socket.write(`<h3 data-testid="city">CITY: ${locationData.city}</h3>`);
       socket.write(
         `<h3 data-testid="postal_code">POSTAL CODE: ${locationData.postal_code}</h3>`,
