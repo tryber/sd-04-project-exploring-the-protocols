@@ -9,16 +9,17 @@ const getHeaderValue = (data, header) => {
 
   return headerData.split(': ').pop();
 };
+console.log(getHeaderValue);
 
 const startOfResponse = null;
 
 const endOfResponse = null;
 
 const server = net.createServer((socket) => {
-  socket.on('data', (data) => {
+  socket.on('data', (_data) => {
     const clientIP = null;
 
-    getLocationInfos(clientIP, (locationData) => {
+    getLocationInfos(clientIP, (_locationData) => {
       socket.write(startOfResponse);
       socket.write('<html><head><meta http-equiv="content-type" content="text/html;charset=utf-8">');
       socket.write('<title>Trybe 🚀</title></head><body>');
