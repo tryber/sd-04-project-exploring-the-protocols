@@ -10,8 +10,7 @@ const getHeaderValue = (data, header) => {
   return headerData.split(': ').pop();
 };
 
-const startOfResponse =
-  'HTTP/1.1 200 OK\r\nContent-Type: text/html; charset=UTF-8\r\n\r\n';
+const startOfResponse = 'HTTP/1.1 200 OK\r\nContent-Type: text/html; charset=UTF-8\r\n\r\n';
 
 const endOfResponse = '\r\n\r\n';
 
@@ -22,26 +21,26 @@ const server = net.createServer((socket) => {
     getLocationInfos(clientIP, (locationData) => {
       socket.write(startOfResponse);
       socket.write(
-        '<html><head><meta http-equiv="content-type" content="text/html;charset=utf-8">'
+        '<html><head><meta http-equiv="content-type" content="text/html;charset=utf-8">',
       );
       socket.write('<title>Trybe 🚀</title></head><body>');
       socket.write('<H1>Explorando os Protocolos 🧐🔎</H1>');
       socket.write(`<h2 data-testid="ip">IP: ${clientIP}</h2>`);
       socket.write(`<h3 data-testid="city">CITY: ${locationData.city}</h3>`);
       socket.write(
-        `<h3 data-testid="postal_code">POSTAL CODE: ${locationData.postal_code}</h3>`
+        `<h3 data-testid="postal_code">POSTAL CODE: ${locationData.postal_code}</h3>`,
       );
       socket.write(
-        `<h3 data-testid="region">REGION: ${locationData.region}</h3>`
+        `<h3 data-testid="region">REGION: ${locationData.region}</h3>`,
       );
       socket.write(
-        `<h3 data-testid="country">COUNTRY: ${locationData.country_name}</h3>`
+        `<h3 data-testid="country">COUNTRY: ${locationData.country_name}</h3>`,
       );
       socket.write(
-        `<h3 data-testid="company">COMPANY: ${locationData.company}</h3>`
+        `<h3 data-testid="company">COMPANY: ${locationData.company}</h3>`,
       );
       socket.write(
-        '<iframe src="https://giphy.com/embed/l3q2zVr6cu95nF6O4" width="480" height="236" frameBorder="0" class="giphy-embed" allowFullScreen></iframe>'
+        '<iframe src="https://giphy.com/embed/l3q2zVr6cu95nF6O4" width="480" height="236" frameBorder="0" class="giphy-embed" allowFullScreen></iframe>',
       );
       socket.write('</body></html>');
       socket.write(endOfResponse);
