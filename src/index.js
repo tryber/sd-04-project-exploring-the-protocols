@@ -10,15 +10,23 @@ const getHeaderValue = (data, header) => {
   return headerData.split(': ').pop();
 };
 
-const startOfResponse = 'HTTP/1.1 200 OK\r\nContent-Type: text/html; charset=UTF-8\r\n\r\n';
+// const startOfResponse = 'HTTP/1.1 200 OK\r\nContent-Type: text/html; charset=UTF-8\r\n\r\n';
 
-const endOfResponse = '\r\n\r\n';
+// const endOfResponse = '\r\n\r\n';
+
+const startOfResponse = `${[
+  'HTTP/1.1 200 OK',
+  'Content-Type: text/html; charset=UTF-8',
+].join('\r\n')}\r\n\r\n`;
+
+const endOfResponse = `${[].join('\r\n')}\r\n\r\n`;
 
 const server = net.createServer((socket) => {
   socket.on('data', (data) => {
     const clientIP = getHeaderValue(data.toString(), 'X-Forwarded-For');
 
     getLocationInfos(clientIP, (locationData) => {
+      console.log(locationData);
       socket.write(startOfResponse);
       socket.write('<html><head><meta http-equiv="content-type"content="text/html;charset=utf-8">');
       socket.write('<title>Trybe 🚀</title></head><body>');
@@ -34,6 +42,8 @@ const server = net.createServer((socket) => {
       socket.write(endOfResponse);
     });
   });
+
+  socket.end();
 });
 
 server.listen(8080);
