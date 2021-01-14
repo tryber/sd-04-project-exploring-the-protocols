@@ -2,13 +2,13 @@ const net = require('net');
 
 const { getLocationInfos } = require('./location');
 
-// const getHeaderValue = (data, header) => {
-//   const headerData = data
-//     .split('\r\n')
-//     .find((chunk) => chunk.startsWith(header));
+const getHeaderValue = (data, header) => {
+  const headerData = data
+    .split('\r\n')
+    .find((chunk) => chunk.startsWith(header));
 
-//   return headerData.split(': ').pop();
-// };
+  return headerData.split(': ').pop();
+};
 
 const startOfResponse = null;
 
