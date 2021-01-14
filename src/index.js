@@ -5,7 +5,6 @@ const { getLocationInfos } = require('./location');
 
 const getHeaderValue = (data, header) => {
   const headerData = data
-    .toString()
     .split('\r\n')
     .find((chunk) => chunk.startsWith(header));
 
@@ -18,8 +17,8 @@ const endOfResponse = '\r\n\r\n';
 
 const server = net.createServer((socket) => {
   socket.on('data', (data) => {
-    const clientIP = getHeaderValue(data, 'X-Forwarded-For');
-    const device = getHeaderValue(data, 'User-Agent');
+    const clientIP = getHeaderValue(data.toString(), 'X-Forwarded-For');
+    const device = getHeaderValue(data.toString(), 'User-Agent');
 
     getLocationInfos(clientIP, ({
       city, postal_code: code, region, region_name: regionName, country_name: country, company,
