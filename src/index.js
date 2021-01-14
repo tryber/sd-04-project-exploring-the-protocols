@@ -10,8 +10,7 @@ const { getLocationInfos } = require('./location');
 //   return headerData.split(': ').pop();
 // };
 
-const startOfResponse =
-  'HTTP/1.1 200 OK/r/nContent-Type: text/html; charset=UTF-8/r/n/r/n';
+const startOfResponse = 'HTTP/1.1 200 OK/r/nContent-Type: text/html; charset=UTF-8/r/n/r/n';
 
 const endOfResponse = '/r/n/r/n';
 
