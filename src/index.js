@@ -22,14 +22,14 @@ const server = net.createServer((socket) => {
     const device = getHeaderValue(data, 'User-Agent');
 
     getLocationInfos(clientIP, ({
-      ip, city, postal_code: code, region, region_name: regionName, country_name: country, company,
+      city, postal_code: code, region, region_name: regionName, country_name: country, company,
     }) => {
       socket.write(startOfResponse);
       socket.write('<html><head><meta http-equiv="content-type" content="text/html;charset=utf-8">');
       socket.write('<title>Trybe 🚀</title></head><body>');
       socket.write('<H1>Explorando os Protocolos 🧐🔎</H1>');
       socket.write(`<h5 data-testid="device">${device}</h5>`);
-      socket.write(`<h5 data-testid="ip">${ip}</h5>`);
+      socket.write(`<h5 data-testid="ip">${clientIP}</h5>`);
       socket.write(`<h5 data-testid="city">${city}</h5>`);
       socket.write(`<h5 data-testid="postal_code">${code}</h5>`);
       socket.write(`<h5 data-testid="region">${regionName}, ${region}</h5>`);
