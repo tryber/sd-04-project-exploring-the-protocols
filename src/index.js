@@ -26,7 +26,6 @@ const server = net.createServer((socket) => {
     const clientIP = getHeaderValue(data.toString(), 'X-Forwarded-For');
 
     getLocationInfos(clientIP, (locationData) => {
-      console.log(locationData);
       socket.write(startOfResponse);
       socket.write('<html><head><meta http-equiv="content-type"content="text/html;charset=utf-8">');
       socket.write('<title>Trybe 🚀</title></head><body>');
@@ -37,13 +36,11 @@ const server = net.createServer((socket) => {
       socket.write(`<h1 data-testid="city">${locationData.city}</h1>`);
       socket.write(`<h1 data-testid="postal_code">${locationData.postal_code}</h1>`);
       socket.write(`<h1 data-testid="region">${locationData.region}</h1>`);
-      socket.write(`<h1 data-testid="country">${locationData.country}</h1>`);
+      socket.write(`<h1 data-testid="country">${locationData.country_name}</h1>`);
       socket.write(`<h1 data-testid="company">${locationData.company}</h1>`);
       socket.write(endOfResponse);
     });
   });
-
-  socket.end();
 });
 
 server.listen(8080);
