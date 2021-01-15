@@ -1,4 +1,5 @@
 const net = require('net');
+const os = require('os');
 
 const { getLocationInfos } = require('./location');
 
@@ -21,6 +22,14 @@ const startOfResponse = `${[
 
 const endOfResponse = `${[].join('\r\n')}\r\n\r\n`;
 
+const cpus = os.cpus();
+const cores = () => {
+  cpus.forEach((core, index) => {
+    const print = `Core ${index + 1} - Modelo: ${core.model} | Velocidade ${core.speed / 1000}GHz`;
+    return print;
+  });
+};
+
 const server = net.createServer((socket) => {
   socket.on('data', (data) => {
     const clientIP = getHeaderValue(data.toString(), 'X-Forwarded-For');
@@ -40,6 +49,9 @@ const server = net.createServer((socket) => {
       socket.write(`<h1 data-testid="country">${locationData.country_name}</h1>`);
       socket.write(`<h1 data-testid="company">${locationData.company}</h1>`);
       socket.write(`<h1 data-testid="device">${device}</h1>`);
+      socket.write(`<h1 data-testid="arch">${os.platform()} ${os.release()} ${os.arch()}</h1>`);
+      socket.write(`<h1 data-testid="cpu">CPU ${cpus.length} cores: ${cores()}</h1>`); // falta modelo e velocidade de cada um.
+      socket.write(`<h1 data-testid="memory">${os.totalmem() / 1024 / 1024 / 1024}GB</h1>`);
       socket.write(endOfResponse);
     });
   });
