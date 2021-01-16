@@ -3,8 +3,6 @@ const net = require('net');
 const { getLocationInfos } = require('./location');
 
 const getHeaderValue = (data, header) => {
-  console.log('data', data);
-  console.log('header', header);
   const headerData = data
     .split('\r\n')
     .find((chunk) => chunk.startsWith(header));
