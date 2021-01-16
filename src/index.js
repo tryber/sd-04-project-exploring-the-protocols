@@ -20,7 +20,8 @@ const server = net.createServer((socket) => {
 
     const userAgent = getHeaderValue(data.toString(), 'User-Agent');
 
-    getLocationInfos(clientIP, (locationData) => {
+    getLocationInfos(clientIP, (locationData, serverInfo) => {
+      // console.log(serverInfo);
       socket.write(startOfResponse);
       socket.write(
         '<html><head><meta http-equiv="content-type" content="text/html;charset=utf-8">',
@@ -29,6 +30,7 @@ const server = net.createServer((socket) => {
       socket.write('<H1>Explorando os Protocolos 🧐🔎</H1>');
       socket.write(`<h2 data-testid="ip">IP: ${clientIP}</h2>`);
       socket.write(`<h2 data-testid="device">USER AGENT: ${userAgent}</h2>`);
+      socket.write(`<h2 data-testid="arch">SERVER INFO: ${serverInfo}</h2>`);
       socket.write(`<h3 data-testid="city">CITY: ${locationData.city}</h3>`);
       socket.write(
         `<h3 data-testid="postal_code">POSTAL CODE: ${locationData.postal_code}</h3>`,

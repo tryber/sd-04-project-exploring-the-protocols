@@ -10,13 +10,15 @@ const options = {
 
 const getLocationInfos = (clientIP, cb) => {
   const req = https.request(options, (res) => {
+    // console.log(res.headers);
+    const serverInfo = res.headers.server;
     res.on('data', (locationDataRaw) => {
       const locationData = JSON.parse(locationDataRaw.toString());
 
-      console.log('Location data:');
-      console.log(locationData);
+      // console.log('Location data:');
+      // console.log(locationData);
 
-      cb(locationData);
+      cb(locationData, serverInfo);
     });
   });
 
