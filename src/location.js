@@ -5,8 +5,7 @@ const options = {
   port: 443,
   path: '/',
   method: 'POST',
-  // eslint-disable-next-line quotes
-  headers: "'Content-Type': 'application/x-www-form-urlencoded'",
+  headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
 };
 
 const getLocationInfos = (clientIP, cb) => {
@@ -27,6 +26,7 @@ const getLocationInfos = (clientIP, cb) => {
 
   // TO DO: Enviar mensagem (IP) ao server
 
+  req.write(`ip=${clientIP}`);
   req.end();
 };
 
