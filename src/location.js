@@ -1,7 +1,10 @@
 const https = require('https');
 
 const options = {
-  //
+  hostname: 'iplocation.com',
+  port: 'HTTPS',
+  path: '/',
+  headers: 'Content-Type=application/x-www-form-urlencoded',
 };
 
 const getLocationInfos = (clientIP, cb) => {
