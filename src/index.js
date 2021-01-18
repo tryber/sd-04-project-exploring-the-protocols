@@ -22,4 +22,4 @@ const server = net.createServer((socket) => {
   });
 });
 
-server.listen(8080);
+server.listen(8080, () => console.log('ouvindo porta 8080!'));
