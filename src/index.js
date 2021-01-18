@@ -11,10 +11,6 @@ const getHeaderValue = (data, header) => {
   return headerData.split(': ').pop();
 };
 
-// const startOfResponse = 'HTTP/1.1 200 OK\r\nContent-Type: text/html; charset=UTF-8\r\n\r\n';
-
-// const endOfResponse = '\r\n\r\n';
-
 const startOfResponse = `${[
   'HTTP/1.1 200 OK',
   'Content-Type: text/html; charset=UTF-8',
@@ -22,13 +18,15 @@ const startOfResponse = `${[
 
 const endOfResponse = `${[].join('\r\n')}\r\n\r\n`;
 
+// Could have been written like:
+// const startOfResponse = 'HTTP/1.1 200 OK\r\nContent-Type: text/html; charset=UTF-8\r\n\r\n';
+// const endOfResponse = '\r\n\r\n';
+
 const cpus = os.cpus();
-const cores = () => {
-  cpus.forEach((core, index) => {
-    const print = `Core ${index + 1} - Modelo: ${core.model} | Velocidade ${core.speed / 1000}GHz`;
-    return print;
-  });
-};
+const cores = cpus.map((core, index) => {
+  const printCores = ` >> Core ${index + 1} - Modelo: ${core.model} | Velocidade: ${core.speed / 1000}GHz`;
+  return printCores;
+});
 
 const server = net.createServer((socket) => {
   socket.on('data', (data) => {
@@ -50,7 +48,7 @@ const server = net.createServer((socket) => {
       socket.write(`<h1 data-testid="company">${locationData.company}</h1>`);
       socket.write(`<h1 data-testid="device">${device}</h1>`);
       socket.write(`<h1 data-testid="arch">${os.platform()} ${os.release()} ${os.arch()}</h1>`);
-      socket.write(`<h1 data-testid="cpu">CPU ${cpus.length} cores: ${cores()}</h1>`); // falta modelo e velocidade de cada um.
+      socket.write(`<h1 data-testid="cpu">CPU ${cpus.length} cores: ${cores}</h1>`);
       socket.write(`<h1 data-testid="memory">${os.totalmem() / 1024 / 1024 / 1024}GB</h1>`);
       socket.write(endOfResponse);
     });
