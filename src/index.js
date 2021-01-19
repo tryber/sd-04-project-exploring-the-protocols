@@ -2,6 +2,7 @@ const net = require('net');
 
 const { getLocationInfos } = require('./location');
 
+// ?
 const getHeaderValue = (data, header) => {
   const headerData = data
     .split('\r\n')
