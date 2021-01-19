@@ -3,9 +3,7 @@ const net = require('net');
 const { getLocationInfos } = require('./location');
 
 const getHeaderValue = (data, header) => {
-  const headerData = data
-    .split('\r\n')
-    .find((chunk) => chunk.startsWith(header));
+  const headerData = data.split('\r\n').find((chunk) => chunk.startsWith(header));
 
   return headerData.split(': ').pop();
 };
@@ -17,6 +15,7 @@ const endOfResponse = '\r\n\r\n';
 const server = net.createServer((socket) => {
   socket.on('data', (data) => {
     const clientIP = null;
+
     getHeaderValue(data.toString(), 'X-Forwarded-For');
 
     getLocationInfos(clientIP, () => {
