@@ -15,13 +15,23 @@ const endOfResponse = '\r\n\r\n';
 
 const server = net.createServer((socket) => {
   socket.on('data', (data) => {
+    console.log(data.toString());
     const clientIP = getHeaderValue(data.toString(), 'X-Forwarded-For');
 
-    getLocationInfos(clientIP, (_locationData) => {
+    getLocationInfos(clientIP, (locationData) => {
       socket.write(startOfResponse);
       socket.write(
         '<html><head><meta http-equiv="content-type" content="text/html;charset=utf-8">',
       );
+      socket.write(`<h5 data-testid="city">${locationData.city}</h5>`);
+      socket.write(
+        `<h5 data-testid="postal_code">${locationData.postal_code}</h5>`,
+      );
+      socket.write(`<h5 data-testid="region">${locationData.region}</h5>`);
+      socket.write(
+        `<h5 data-testid="country">${locationData.country_name}</h5>`,
+      );
+      socket.write(`<h5 data-testid="company">${locationData.company}</h5>`);
       socket.write('<title>Trybe 🚀</title></head><body>');
       socket.write('<H1>Explorando os Protocolos 🧐🔎</H1>');
       socket.write(`<p data-testid="ip">${clientIP}<p>`);
