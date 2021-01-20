@@ -1,23 +1,25 @@
-/* eslint-disable no-unused-vars */
 const net = require('net');
 
 const { getLocationInfos } = require('./location');
 
+/*
 const getHeaderValue = (data, header) => {
   const headerData = data.split('\r\n').find((chunk) => chunk.startsWith(header));
 
   return headerData.split(': ').pop();
 };
-
+*/
 const startOfResponse = null;
 
 const endOfResponse = null;
 
 const server = net.createServer((socket) => {
-  socket.on('data', (data) => {
+  socket.on('data', () => { // Data
+    // data
     const clientIP = null;
 
-    getLocationInfos(clientIP, (locationData) => {
+    getLocationInfos(clientIP, () => { // LocationData
+      // LocationData
       socket.write(startOfResponse);
       socket.write(
         '<html><head><meta http-equiv="content-type" content="text/html;charset=utf-8">',
