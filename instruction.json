@@ -4,6 +4,6 @@
    "commandoToken": "./ngrok authtoken",
    "token": "1n6tV0tJ6VavAL3CjLRvPgKW3B9_EpyszSvPQ4feKh2Hqckz",
    "installNgrokPackage": "npm install ngrok",
-   "commandStart": "ngrok http https://localhost:8080",
+   "commandStart": "./ngrok http https://localhost:8080",
    "commandNgrok": "./ngrok http 8080"
  }

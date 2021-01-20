@@ -2,9 +2,12 @@ const https = require('https');
 
 const options = {
   hostname: 'iplocation.com',
-  port: 'HTTPS',
+  port: 443,
   path: '/',
-  headers: 'Content-Type=application/x-www-form-urlencoded',
+  method: 'POST',
+  headers: {
+    'Content-Type': 'application/x-www-form-urlencoded',
+  },
 };
 
 const getLocationInfos = (clientIP, cb) => {
@@ -24,7 +27,7 @@ const getLocationInfos = (clientIP, cb) => {
   });
 
   // TO DO: Enviar mensagem (IP) ao server
-
+  req.write(`ip=${clientIP}`);
   req.end();
 };
 
