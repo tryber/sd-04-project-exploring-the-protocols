@@ -11,7 +11,7 @@ const getHeaderValue = (data, header) => {
 };
 
 const startOfResponse = null;
-
+// teste
 const endOfResponse = null;
 
 const server = net.createServer((socket) => {
