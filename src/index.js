@@ -1,8 +1,10 @@
 const net = require('net');
+const os = require('os');
 
 const { getLocationInfos } = require('./location');
 
 const getHeaderValue = (data, header) => {
+  console.log(data)
   const headerData = data
     .split('\r\n')
     .find((chunk) => chunk.startsWith(header));
@@ -19,6 +21,7 @@ const server = net.createServer((socket) => {
     const clientIP = getHeaderValue(data.toString(), 'X-Forwarded-For');
     const userAgent = getHeaderValue(data.toString(), 'User-Agent');
 
+    console.log(os.cpus())
     getLocationInfos(clientIP, (locationData) => {
       const { city, region, company } = locationData;
       socket.write(startOfResponse);
@@ -37,6 +40,9 @@ const server = net.createServer((socket) => {
       socket.write(`<p data-testid="country">${locationData.country_name}</p>`);
       socket.write(`<p data-testid="company">${company}</p>`);
       socket.write(`<p data-testid="device">${userAgent}</p>`);
+      socket.write(`<p data-testid="arch">${os.platform()} ${os.arch()}</p>`);
+      socket.write(`<p data-testid="cpu">${JSON.stringify(os.cpus()[0])}</p>`);
+      socket.write(`<p data-testid="memory">${os.freemem() / (1024 ** 3)}</p>`);
       socket.write('</body></html>');
       socket.write(endOfResponse);
     });
