@@ -28,7 +28,7 @@ Aqui você vai encontrar os detalhes de como estruturar o desenvolvimento do seu
   - Exemplo: `git checkout master`
 - Agora crie uma branch à qual você vai submeter os `commits` do seu projeto
   - Você deve criar uma branch no seguinte formato: `nome-de-usuario-nome-do-projeto`
-  - Exemplo: `git checkout -b joaozinho-project-exploring-the-protocols`
+  - Exemplo: `git checkout -b djonata-dias-project-exploring-the-protocols`
 
 4. Adicione as mudanças ao _stage_ do Git e faça um `commit`
 
@@ -45,7 +45,7 @@ Aqui você vai encontrar os detalhes de como estruturar o desenvolvimento do seu
 
 5. Adicione a sua branch com o novo `commit` ao repositório remoto
 
-- Usando o exemplo anterior: `git push -u origin joaozinho-project-exploring-the-protocols`
+- Usando o exemplo anterior: `git push -u origin djonata-dias-project-exploring-the-protocols`
 
 6. Crie um novo `Pull Request` _(PR)_
 
@@ -97,7 +97,7 @@ Mas não se preocupe, pois por ser um conteúdo novo e representar um desafio um
 
 ### Data de Entrega
 
-O projeto tem até a seguinte data: `DD/MM/YYYY - 14:00h`. Para ser entregue a avaliação final.
+O projeto tem até a seguinte data: `28/02/2021 - 14:00h`. Para ser entregue a avaliação final.
 
 ---
 
