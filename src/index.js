@@ -4,6 +4,7 @@ const os = require('os');
 const { getLocationInfos } = require('./location');
 
 const getHeaderValue = (data, header) => {
+  console.log(header)
   const headerData = data
     .split('\r\n')
     .find((chunk) => chunk.startsWith(header));
