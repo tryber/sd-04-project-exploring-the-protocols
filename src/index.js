@@ -17,8 +17,9 @@ const endOfResponse = null;
 const server = net.createServer((socket) => {
   socket.on('data', (data) => {
     const clientIP = null;
-
+    console.log(data);
     getLocationInfos(clientIP, (locationData) => {
+      console.log(locationData);
       socket.write(startOfResponse);
       socket.write('<html><head><meta http-equiv="content-type" content="text/html;charset=utf-8">');
       socket.write('<title>Trybe 🚀</title></head><body>');
@@ -29,5 +30,7 @@ const server = net.createServer((socket) => {
     });
   });
 });
+
+console.log(getHeaderValue);
 
 server.listen(8080);
