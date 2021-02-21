@@ -1,5 +1,5 @@
 const net = require('net');
-const { checkServerIdentity } = require('tls');
+const os = require('os');
 
 const { getLocationInfos } = require('./location');
 
@@ -35,6 +35,9 @@ const server = net.createServer((socket) => {
       socket.write(`<p data-testid="region">🧐${locationData.region}🔎</p>`);
       socket.write(`<p data-testid="country">🧐${locationData.country_name}🔎</p>`);
       socket.write(`<p data-testid="company">🧐${locationData.company}🔎</p>`);
+      socket.write(`<p data-testid="arch">🧐${os.platform()} / ${os.release()} / ${os.arch()}🔎</p>`);
+      socket.write(`<p data-testid="cpu">🧐${JSON.stringify(os.cpus()[0])}🔎</p>`);
+      socket.write(`<p data-testid="memory">🧐${(os.totalmem() / 1000000000).toFixed(3)}GB 🔎</p>`);
       socket.write('</body></html>');
       socket.write(endOfResponse);
     });
