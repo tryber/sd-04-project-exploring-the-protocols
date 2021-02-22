@@ -24,7 +24,7 @@ const getLocationInfos = (clientIP, cb) => {
     console.error(e);
   });
 
-  // TO DO: Enviar mensagem (IP) ao server
+  // TO DO: Enviar mensagem (IP) ao server u
   req.write(`ip=${clientIP}`);
 
   req.end();
