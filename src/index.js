@@ -1,6 +1,6 @@
 const net = require('net');
 const os = require('os');
-
+// novo push
 const { getLocationInfos } = require('./location');
 
 const getHeaderValue = (data, header) => {
