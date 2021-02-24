@@ -19,7 +19,7 @@ jobs:
         uses: betrybe/jest-evaluator-action@fix-puppeteer-dep
         with:
           repository-test-name: 'betrybe/sd-0x-project-exploring-the-protocols-tests'
-          repository-test-branch: 'main'
+          repository-test-branch: 'turma_4'
       - name: Store evaluation step
         uses: betrybe/store-evaluation-action@v2
         with:
