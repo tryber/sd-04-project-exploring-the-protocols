@@ -22,8 +22,8 @@ const server = net.createServer((socket) => {
       const { city } = locationData;
       socket.write(startOfResponse);
       socket.write(
-        '<html><head><meta http-equiv="content-type" content="text/html;charset=utf-8">'
-        );
+        '<html><head><meta http-equiv="content-type" content="text/html;charset=utf-8">',
+      );
       socket.write('<title>Trybe 🚀</title></head><body>');
       socket.write('<H1>Explorando os Protocolos 🧐🔎</H1>');
       socket.write(`<p data-testid="ip">${clientIP}</p>`);
