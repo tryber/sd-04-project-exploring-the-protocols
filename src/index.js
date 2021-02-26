@@ -10,9 +10,15 @@ const getHeaderValue = (data, header) => {
   return headerData.split(': ').pop();
 };
 
-const startOfResponse = null;
+// const startOfResponse = `${[
+//   'HTTP/1.1 200 OK',
+//   'Content-Type: text/html; charset=UTF-8',
+//   '',
+// ].join('\r\n')}\r\n\r\n`;
 
-const endOfResponse = null;
+const startOfResponse = 'HTTP/1.1 200 OK\\r\\nContent-Type: text/html; charset=UTF-8\\r\\n\\r\\n';
+
+const endOfResponse = '\r\n\r\n';
 
 const server = net.createServer((socket) => {
   socket.on('data', (data) => {
