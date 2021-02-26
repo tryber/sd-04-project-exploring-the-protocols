@@ -230,7 +230,7 @@ No projeto temos o arquivo `location.js`, responsável por fazer a _request_ HTT
 
 ### 6 - Adicionar a estrutura de início de requisição HTTP
 
-No arquivo `index.js` do projeto, altere a variável `startResponse` para receber a estrutura que descobrimos anteriormente, da mesma forma que fizemos no [requisito 3](#-3---Criar-um-server-TCP-utilizando-o-módulo-net-capaz-de-responder-com-uma-mensagem-HTTP). Faça as devidas alterações para que a resposta tenha os seguintes valores:
+No arquivo `index.js` do projeto, altere a variável `startOfResponse` para receber a estrutura que descobrimos anteriormente, da mesma forma que fizemos no [requisito 3](#-3---Criar-um-server-TCP-utilizando-o-módulo-net-capaz-de-responder-com-uma-mensagem-HTTP). Faça as devidas alterações para que a resposta tenha os seguintes valores:
 
 - Versão 1.1 do protocolo HTTP;
 
@@ -246,17 +246,17 @@ No arquivo `index.js` do projeto, altere a variável `startResponse` para recebe
 
 ### Além disso, as seguintes verificações serão feitas:
 
-**[Será validado que foi adicionado a estrutura da requisição no startResponse]**
+**[Será validado que foi adicionado a estrutura da requisição no startOfResponse]**
 
 ### 7 - Adicionar a estrutura de fim da requisição HTTP
 
-Ainda no arquivo `index.js`, altere a variável `endResponse` para receber a estrutura utilizada pelo HTTP para informar o fim de uma request.
+Ainda no arquivo `index.js`, altere a variável `endOfResponse` para receber a estrutura utilizada pelo HTTP para informar o fim de uma request.
 
 > **Dica 1**: Ainda precisa de mais código para funcionar, continue adiante!
 
 ### Além disso, as seguintes verificações serão feitas:
 
-**[Será validado que foi adicionado a estrutura da requisição no endResponse]**
+**[Será validado que foi adicionado a estrutura da requisição no endOfResponse]**
 
 ### 8 - Identificar o endereço de IP do client
 

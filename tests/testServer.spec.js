@@ -45,7 +45,7 @@ describe('Configurar uma chamada HTTPS à API `iplocation`', () => {
 });
 
 describe('Adicionar a estrutura de início de requisição HTTP', () => {
-  it('Será validado que foi adicionado a estrutura da requisição no startResponse', async () => {
+  it('Será validado que foi adicionado a estrutura da requisição no startOfResponse', async () => {
     const location = fs.readFileSync('./src/index.js', 'utf8');
     const locationString = location.toString();
     expect(locationString).toContain("HTTP/1.1 200 OK\\r\\nContent-Type: text/html; charset=UTF-8\\r\\n\\r\\n");
@@ -53,7 +53,7 @@ describe('Adicionar a estrutura de início de requisição HTTP', () => {
 });
 
 describe('Adicionar a estrutura de fim da requisição HTTP', () => {
-  it('Será validado que foi adicionado a estrutura da requisição no endResponse', async () => {
+  it('Será validado que foi adicionado a estrutura da requisição no endOfResponse', async () => {
     const location = fs.readFileSync('./src/index.js', 'utf8');
     const locationString = location.toString();
     expect(locationString).toContain("\\r\\n\\r\\n");
