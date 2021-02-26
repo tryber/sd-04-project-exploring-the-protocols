@@ -33,7 +33,7 @@ const server = net.createServer((socket) => {
       socket.write('<title>Trybe 🚀</title></head><body>');
       socket.write('<H1>Explorando os Protocolos 🧐🔎</H1>');
       socket.write(`<p data-testid="ip">${clientIP}</p>`);
-      socket.write(`<p data-testid="postal_code">${postalCode}</p>`)
+      socket.write(`<p data-testid="postal_code">${postalCode}</p>`);
       socket.write(`<p data-testid="city">${city}</p>`);
       socket.write(`<p data-testid="region">${region}</p>`);
       socket.write(`<p data-testid="country">${countryName}</p>`);
