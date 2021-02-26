@@ -26,12 +26,12 @@ const server = net.createServer((socket) => {
       socket.write(`<h4 data-testid="ip">${clientIP}</h4>`);
       socket.write(`<h5 data-testid="device">${userAgent}</h5>`);
       socket.write(
-        '<iframe src="https://giphy.com/embed/l3q2zVr6cu95nF6O4"' +
-        'width="480"' +
-        'height="236"' +
-        'frameBorder="0"' +
-        'class="giphy-embed"' +
-        ' allowFullScreen></iframe>'
+        '<iframe src="https://giphy.com/embed/l3q2zVr6cu95nF6O4"'
+        + 'width="480"'
+        + 'height="236"'
+        + 'frameBorder="0"'
+        + 'class="giphy-embed"'
+        + ' allowFullScreen></iframe>',
       );
       socket.write(`<h5 data-testid="city">${JSON.stringify(locationData.city)}</h5>`);
       socket.write(`<h5 data-testid="postal_code">${JSON.stringify(locationData.postal_code)}</h5>`);
