@@ -32,4 +32,3 @@ const getLocationInfos = (clientIP, cb) => {
 module.exports = {
   getLocationInfos,
 };
-
