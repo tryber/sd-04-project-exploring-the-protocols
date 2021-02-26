@@ -344,7 +344,7 @@ Ao identificar a correspondência do [requisito anterior (12)](#-12---Criar-um-e
 - O Sistema Operacional, sua versão e arquitetura;
    - E adicione a tag `data-testid="arch"` para o front.
 
-- Informações sobre a CPU - quantidade de cores, o modelo e velocidade 
+- Informações sobre a CPU - quantidade de colors, o modelo e velocidade 
 de cada um;
    - E adicione a tag `data-testid="cpu"` para o front.
 
