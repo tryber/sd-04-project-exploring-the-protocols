@@ -5,9 +5,12 @@ const { getLocationInfos } = require('./location');
 const getHeaderValue = (data, header) => {
   const headerData = data
     .split('\r\n')
-    .find((chunk) => chunk.startsWith(header));
+    .find((chunk) => {
+      console.log('CHUNK: ', chunk);
+      return chunk.startsWith(header);
+    });
 
-  console.log('HEADERDATA: ', headerData);
+  console.log('\nHEADERDATA: ', headerData);
   return headerData.split(': ').pop();
 };
 
@@ -18,8 +21,12 @@ const endOfResponse = '\r\n\r\n';
 const server = net.createServer((socket) => {
   socket.on('data', (data) => {
     console.log('DATA: ', data);
+
     const clientIP = getHeaderValue(data.toString(), 'X-Forwarded-For');
     console.log('CLIENTIP: ', clientIP);
+
+    const userAgent = getHeaderValue(data.toString(), 'User-Agent');
+    console.log('USER-AGENT: ', userAgent);
 
     getLocationInfos(clientIP, (locationData) => {
       const {
@@ -43,6 +50,7 @@ const server = net.createServer((socket) => {
       socket.write(`<p data-testid="region">${region}${regionName}</p>`);
       socket.write(`<p data-testid="country">${countryName}</p>`);
       socket.write(`<p data-testid="company">${company}</p>`);
+      socket.write(`<p data-testid="device">${userAgent}</p>`);
       socket.write('</body></html>');
       socket.write(endOfResponse);
     });
