@@ -19,7 +19,7 @@ const server = net.createServer((socket) => {
     const clientIP = getHeaderValue(data.toString(), 'X-Forwarded-For');
 
     getLocationInfos(clientIP, (locationData) => {
-      const { city } = locationData;
+      const { city, region, country_name, company } = locationData;
       socket.write(startOfResponse);
       socket.write(
         '<html><head><meta http-equiv="content-type" content="text/html;charset=utf-8">',
@@ -28,6 +28,9 @@ const server = net.createServer((socket) => {
       socket.write('<H1>Explorando os Protocolos 🧐🔎</H1>');
       socket.write(`<p data-testid="ip">${clientIP}</p>`);
       socket.write(`<p data-testid="city">${city}</p>`);
+      socket.write(`<p data-testid="region">${region}</p>`);
+      socket.write(`<p data-testid="country">${country_name}</p>`);
+      socket.write(`<p data-testid="company">${company}</p>`);
       socket.write(
         '<iframe src="https://giphy.com/embed/l3q2zVr6cu95nF6O4" width="480" height="236" frameBorder="0" class="giphy-embed" allowFullScreen></iframe>',
       );
