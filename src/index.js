@@ -19,11 +19,12 @@ const server = net.createServer((socket) => {
     const clientIP = getHeaderValue(data.toString(), 'X-Forwarded-For');
 
     getLocationInfos(clientIP, (locationData) => {
-      const { 
-        city, region,
+      const {
+        city,
+        region,
         country_name: countryName,
         postal_code: postalCode,
-        company 
+        company,
       } = locationData;
       socket.write(startOfResponse);
       socket.write(
