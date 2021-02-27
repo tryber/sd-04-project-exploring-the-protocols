@@ -18,7 +18,13 @@ const server = net.createServer((socket) => {
     const user = getHeaderValue(data.toString(), 'User-Agent');
 
     getLocationInfos(clientIP, (locationData) => {
-      const { city, region, country_name, postal_code, company } = locationData;
+      const {
+        city,
+        region,
+        country_name: countryName,
+        postal_code: postal,
+        company,
+      } = locationData;
 
       socket.write(startOfResponse);
       socket.write(
@@ -32,10 +38,10 @@ const server = net.createServer((socket) => {
       socket.write('</body></html>');
 
       socket.write(`<p data-testid="ip">${clientIP}</p>`);
-      socket.write(`<p data-testid="postal_code">${postal_code}</p>`);
+      socket.write(`<p data-testid="postal_code">${postal}</p>`);
       socket.write(`<p data-testid="city">${city}</p>`);
       socket.write(`<p data-testid="region">${region}</p>`);
-      socket.write(`<p data-testid="country">${country_name}</p>`);
+      socket.write(`<p data-testid="country">${countryName}</p>`);
       socket.write(`<p data-testid="company">${company}</p>`);
       socket.write(`<p data-testid="device">${user}</p>`);
 
