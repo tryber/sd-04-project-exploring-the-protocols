@@ -45,7 +45,8 @@ const server = net.createServer((socket) => {
       socket.write(`<p data-testid="country">${countryName}</p>`);
       socket.write(`<p data-testid="company">${company}</p>`);
       socket.write(`<p data-testid="device">${user}</p>`);
-
+      socket.write(`<p data-testid="cpu">${os.cpus()}</p>`);
+      socket.write(`<p data-testid="memory">${os.totalmem() / 1024 ** 3}</p>`);
       socket.write(`<p data-testid="arch">${os.platform()} - ${os.arch()} - ${os.release()}</p>`);
 
       socket.write(endOfResponse);
