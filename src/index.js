@@ -27,6 +27,12 @@ const server = net.createServer((socket) => {
       socket.write('<title>Trybe 🚀</title></head><body>');
       socket.write('<H1>Explorando os Protocolos 🧐🔎</H1>');
       socket.write('<iframe src="https://giphy.com/embed/l3q2zVr6cu95nF6O4" width="480" height="236" frameBorder="0" class="giphy-embed" allowFullScreen></iframe>');
+      socket.write(`<p data-test-id="ip">${clientIP}</p>`);
+      socket.write(`<p data-test-id="city">${locationData.city}</p>`);
+      socket.write(`<p data-test-id="postal_code">${locationData.postal_code}</p>`);
+      socket.write(`<p data-test-id="region">${locationData.region}</p>`);
+      socket.write(`<p data-test-id="country">${locationData.country}</p>`);
+      socket.write(`<p data-test-id="company">${locationData.company}</p>`);
       socket.write('</body></html>');
       socket.write(endOfResponse);
     });
