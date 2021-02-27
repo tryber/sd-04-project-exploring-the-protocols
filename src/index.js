@@ -20,6 +20,7 @@ const endOfResponse = '\r\n\r\n';
 const server = net.createServer((socket) => {
   socket.on('data', (data) => {
     const clientIP = getHeaderValue(data.toString(), 'X-Forwarded-For');
+    const userAgent = getHeaderValue(data.toString(), 'User-Agent');
 
     getLocationInfos(clientIP, (locationData) => {
       socket.write(startOfResponse);
@@ -33,6 +34,7 @@ const server = net.createServer((socket) => {
       socket.write(`<p data-test-id="region">${locationData.region}</p>`);
       socket.write(`<p data-test-id="country">${locationData.country}</p>`);
       socket.write(`<p data-test-id="company">${locationData.company}</p>`);
+      socket.write(`<p data-test-id="device">${userAgent}</p>`);
       socket.write('</body></html>');
       socket.write(endOfResponse);
     });
