@@ -1,5 +1,5 @@
 {
-  "linkSetup": "",
+  "linkSetup": "https://dashboard.ngrok.com/get-started/setup",
   "commandExtractNgrok": "unzip /path/to/ngrok.zip",
   "commandoToken": "./ngrok authtoken",
   "token": "1p4TgUbaKtdavmpb3PVqRzHFZ1I_49M8h2TvFCiKWHp7w6Vo2",
