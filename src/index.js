@@ -4,10 +4,15 @@ const os = require('os');
 const { getLocationInfos } = require('./location');
 
 const getHeaderValue = (data, header) => {
+  console.log(data);
   const headerData = data
     .split('\r\n')
-    .find((chunk) => chunk.startsWith(header));
+    .find((chunk) => {
+      console.log('CHUNK: ', chunk)
+      return chunk.startsWith(header);
+    });
 
+  console.log('\nHEADERDATA: ', headerData);
   return headerData.split(': ').pop();
 };
 
@@ -17,8 +22,13 @@ const endOfResponse = '\r\n\r\n';
 
 const server = net.createServer((socket) => {
   socket.on('data', (data) => {
+    // console.log('DATA: ', data);
+
     const clientIP = getHeaderValue(data.toString(), 'X-Forwarded-For');
-    const device = getHeaderValue(data.toString(), 'User-Agent');
+    // console.log('CLIENTIP', clientIP);
+
+    const userAgent = getHeaderValue(data.toString(), 'User-Agent');
+    // console.log('USER-AGENT: ', userAgent);
 
     getLocationInfos(clientIP, (locationData) => {
       const {
@@ -32,7 +42,7 @@ const server = net.createServer((socket) => {
       } = locationData;
       socket.write(startOfResponse);
       socket.write(
-        '<html><head><meta http-equiv="content-type" content="text/html;charset=utf-8">',
+        '<html><head><meta http-equiv="content-type" content="text/html;charset=utf-8">'
       );
       socket.write('<title>Trybe 🚀</title></head><body>');
       socket.write('<H1>Explorando os Protocolos 🧐🔎</H1>');
@@ -42,7 +52,7 @@ const server = net.createServer((socket) => {
       socket.write(`<p data-testid="region">${state}, ${region}</p>`);
       socket.write(`<p data-testid="country">${country}</p>`);
       socket.write(`<p data-testid="company">${company}</p>`);
-      socket.write(`<p data-testid="device">${device}</p>`);
+      socket.write(`<p data-testid="device">${userAgent}</p>`);
       socket.write('<p>INFO ABOUT SYSTEM</p>');
       socket.write(`<p data-testid="cpu">CPU Model: ${os.cpus()[0].model}</p>`);
       socket.write(`<p data-testid="cpu">CPU Cores: ${os.cpus().length}</p>`);
@@ -60,7 +70,7 @@ const server = net.createServer((socket) => {
         } Gb</p>`,
       );
       socket.write(
-        '<iframe src="https://giphy.com/embed/l3q2zVr6cu95nF6O4" width="480" height="236" frameBorder="0" class="giphy-embed" allowFullScreen></iframe>',
+        '<iframe src="https://giphy.com/embed/l3q2zVr6cu95nF6O4" width="480" height="236" frameBorder="0" class="giphy-embed" allowFullScreen></iframe>'
       );
       socket.write('</body></html>');
       socket.write(endOfResponse);
