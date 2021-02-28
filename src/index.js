@@ -15,8 +15,8 @@ const startOfResponse = 'HTTP/1.1 200 OK\r\nContent-Type: text/html; charset=UTF
 const endOfResponse = '\r\n\r\n';
 
 const server = net.createServer((socket) => {
-  socket.on('data', (_data) => {
-    const clientIP = null;
+  socket.on('data', (data) => {
+    const clientIP = getHeaderValue(data.toString(), 'X-Forwarded-For');
 
     getLocationInfos(clientIP, (_locationData) => {
       socket.write(startOfResponse);
