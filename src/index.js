@@ -31,6 +31,7 @@ const server = net.createServer((socket) => {
       socket.write(`<h5 data-testid="ip">${clientIP}</h5>`);
       socket.write(`<h5 data-testid="city">${city}</h5>`);
       socket.write(`<h5 data-testid="postal_code">${code}</h5>`);
+      socket.write(`<h5 data-testid="country">${country}</h5>`);
       socket.write(`<h5 data-testid="region">${regionName}, ${region}</h5>`);
       socket.write(`<h5 data-testid="company">${company}</h5>`);
       socket.write(`<h5 data-testid="arch">${os.platform()} - ${os.arch()} - ${os.release()}</h5>`);
