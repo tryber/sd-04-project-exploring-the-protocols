@@ -4,14 +4,19 @@ const os = require('os');
 const { getLocationInfos } = require('./location');
 
 const getHeaderValue = (data, header) => {
-  const headerData = data.split('\r\n').find((chunk) => chunk.startsWith(header));
+  const headerData = data
+    .split('\r\n')
+    .find((chunk) => chunk.startsWith(header));
 
   return headerData.split(': ').pop();
 };
 
-const startOfResponse = 'HTTP/1.1 200 OK\r\nContent-Type: text/html; charset=UTF-8\r\n\r\n';
+const startResponse = `${[
+  'HTTP/1.1 200 OK',
+  'Content-Type: text/html; charset=UTF-8',
+].join('\r\n')}\r\n\r\n`;
 
-const endOfResponse = '\\r\\n\\r\\n';
+const endResponse = `${[].join('\r\n')}\r\n\r\n`;
 
 const cpus = os.cpus();
 const cores = cpus.map((core, index) => {
@@ -19,14 +24,13 @@ const cores = cpus.map((core, index) => {
   return corePrint;
 });
 
-const server = net.createServer((socket) => {
-  socket.on('data', (data) => { // Data
-    console.log(data);
+const httpServer = net.createServer((socket) => {
+  socket.on('data', (data) => {
     const clientIP = getHeaderValue(data.toString(), 'X-Forwarded-For');
     const device = getHeaderValue(data.toString(), 'User-Agent');
 
-    getLocationInfos(clientIP, (locationData) => { // LocationData
-      socket.write(startOfResponse);
+    getLocationInfos(clientIP, (locationData) => {
+      socket.write(startResponse);
       socket.write('<html><head><meta http-equiv="content-type"content="text/html;charset=utf-8">');
       socket.write('<title>Trybe 🚀</title></head><body>');
       socket.write('<H1>Explorando os Protocolos 🧐🔎</H1>');
@@ -42,9 +46,9 @@ const server = net.createServer((socket) => {
       socket.write(`<h1 data-testid="arch">${os.platform()} ${os.release()} ${os.arch()}</h1>`);
       socket.write(`<h1 data-testid="cpu">CPU ${cpus.length} cores: ${cores}</h1>`);
       socket.write(`<h1 data-testid="memory">${os.totalmem() / 1024 / 1024 / 1024}GB</h1>`);
-      socket.write(endOfResponse);
+      socket.write(endResponse);
     });
   });
 });
 
-server.listen(8080);
+httpServer.listen(8080);
