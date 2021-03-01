@@ -2,23 +2,26 @@ const net = require('net');
 
 const { getLocationInfos } = require('./location');
 
-/* const getHeaderValue = (data, header) => {
+const getHeaderValue = (data, header) => {
   const headerData = data
     .split('\r\n')
     .find((chunk) => chunk.startsWith(header));
 
   return headerData.split(': ').pop();
-}; */
+};
 
-const startOfResponse = null;
+const startOfResponse = `${[
+  'HTTP/1.1 200 OK',
+  'Content-Type: text/html; charset=UTF-8',
+].join('\r\n')}\r\n\r\n`;
 
-const endOfResponse = null;
+const endOfResponse = '\r\n\r\n';
 
 const server = net.createServer((socket) => {
-  socket.on('data', (_data) => {
+  socket.on('data', (data) => {
     const clientIP = null;
 
-    getLocationInfos(clientIP, (_ocationData) => {
+    getLocationInfos(clientIP, (locationData) => {
       socket.write(startOfResponse);
       socket.write('<html><head><meta http-equiv="content-type" content="text/html;charset=utf-8">');
       socket.write('<title>Trybe 🚀</title></head><body>');
