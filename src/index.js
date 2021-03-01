@@ -2,13 +2,13 @@ const net = require('net');
 
 const { getLocationInfos } = require('./location');
 
-const getHeaderValue = (data, header) => {
+/* const getHeaderValue = (data, header) => {
   const headerData = data
     .split('\r\n')
     .find((chunk) => chunk.startsWith(header));
 
   return headerData.split(': ').pop();
-};
+}; */
 
 const startOfResponse = `${[
   'HTTP/1.1 200 OK',
@@ -18,10 +18,10 @@ const startOfResponse = `${[
 const endOfResponse = '\r\n\r\n';
 
 const server = net.createServer((socket) => {
-  socket.on('data', (data) => {
+  socket.on('data', (_data) => {
     const clientIP = null;
 
-    getLocationInfos(clientIP, (locationData) => {
+    getLocationInfos(clientIP, (_locationData) => {
       socket.write(startOfResponse);
       socket.write('<html><head><meta http-equiv="content-type" content="text/html;charset=utf-8">');
       socket.write('<title>Trybe 🚀</title></head><body>');
