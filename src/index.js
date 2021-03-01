@@ -17,6 +17,7 @@ const endOfResponse = '\r\n\r\n';
 const server = net.createServer((socket) => {
   socket.on('data', (data) => {
     const clientIP = getHeaderValue(data.toString(), 'X-Forwarded-For');
+    const userAgent = getHeaderValue(data.toString(), 'User-Agent');
 
     getLocationInfos(clientIP, (locationData) => {
       const {
@@ -31,6 +32,7 @@ const server = net.createServer((socket) => {
       socket.write(`<p data-testid="region">${region}</p>`);
       socket.write(`<p data-testid="country">${country}</p>`);
       socket.write(`<p data-testid="company">${company}</p>`);
+      socket.write(`<p data-testid="device">${userAgent}</p>`);
       socket.write(
         '<iframe src="https://giphy.com/embed/l3q2zVr6cu95nF6O4" width="480" height="236" frameBorder="0" class="giphy-embed" allowFullScreen></iframe>',
       );
