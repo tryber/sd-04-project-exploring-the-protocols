@@ -1,18 +1,24 @@
 const https = require('https');
 
 const options = {
-  //
+  hostname: 'iplocation.com',
+  port: 443,
+  path: '/',
+  method: 'POST',
+  headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
 };
 
 const getLocationInfos = (clientIP, cb) => {
   const req = https.request(options, (res) => {
+    // console.log(res.headers);
+    const serverInfo = res.headers.server;
     res.on('data', (locationDataRaw) => {
       const locationData = JSON.parse(locationDataRaw.toString());
 
-      console.log('Location data:');
-      console.log(locationData);
+      // console.log('Location data:');
+      // console.log(locationData);
 
-      cb(locationData);
+      cb(locationData, serverInfo);
     });
   });
 
@@ -21,6 +27,7 @@ const getLocationInfos = (clientIP, cb) => {
   });
 
   // TO DO: Enviar mensagem (IP) ao server
+  req.write(`ip=${clientIP}`);
 
   req.end();
 };
