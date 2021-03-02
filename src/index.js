@@ -19,8 +19,8 @@ const server = net.createServer((socket) => {
   socket.on('data', (data) => {
     const clientIP = getHeaderValue(data.toString(), 'X-Forwarded-For');
     const userAgent = getHeaderValue(data.toString(), 'User-Agent');
-
     getLocationInfos(clientIP, (locationData) => {
+      console.log(locationData);
       socket.write(startOfResponse);
       socket.write('<html><head><meta http-equiv="content-type" content="text/html;charset=utf-8">');
       socket.write('<title>Trybe 🚀</title></head><body>');
@@ -30,7 +30,7 @@ const server = net.createServer((socket) => {
       socket.write(`<p data-test-id="city">${locationData.city}</p>`);
       socket.write(`<p data-test-id="postal_code">${locationData.postal_code}</p>`);
       socket.write(`<p data-test-id="region">${locationData.region}</p>`);
-      socket.write(`<p data-test-id="country">${locationData.country}</p>`);
+      socket.write(`<p data-test-id="country">${locationData.country_name}</p>`);
       socket.write(`<p data-test-id="company">${locationData.company}</p>`);
       socket.write(`<p data-test-id="device">${userAgent}</p>`);
       socket.write(`<p data-testid="arch">${os.platform()}: ${os.release()}, ${os.arch()}`);
