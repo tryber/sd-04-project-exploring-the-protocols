@@ -12,7 +12,12 @@ const getHeaderValue = (data, header) => {
 
 getHeaderValue();
 
-const startOfResponse = null;
+const startOfResponse = `${[
+  'HTTP/1.1 200 OK',
+  'Content-Type: text/html; charset=UTF-8',
+  '',
+  '<h1 data-testid="server">Protocolos</h1>',
+].join('\r\n')}\r\n\r\n`;
 
 const endOfResponse = null;
 
