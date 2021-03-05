@@ -25,12 +25,12 @@ const server = net.createServer((socket) => {
       socket.write('<H1>Explorando os Protocolos 🧐🔎</H1>');
       socket.write('<iframe src="https://giphy.com/embed/l3q2zVr6cu95nF6O4" width="480" height="236" frameBorder="0" class="giphy-embed" allowFullScreen></iframe>');
       socket.write(`<p data-testid="ip">${locationData.ip}</p>`);
-      /* socket.write(`<p data-testid="city">${locationData.city}</p>`);
+      socket.write(`<p data-testid="city">${locationData.city}</p>`);
       socket.write(`<p data-testid="postal_code">${locationData.postal_code}</p>`);
       socket.write(`<p data-testid="region">${locationData.region}</p>`);
       socket.write(`<p data-testid="country">${locationData.country}</p>`);
       socket.write(`<p data-testid="company">${locationData.company}</p>`);
-      socket.write('</body></html>'); */
+      socket.write('</body></html>');
       socket.write(endOfResponse);
     });
   });
