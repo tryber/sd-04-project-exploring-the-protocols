@@ -10,7 +10,7 @@ const getHeaderValue = (data, header) => {
   return headerData.split(': ').pop();
 };
 
-getHeaderValue();
+// getHeaderValue();
 
 const startOfResponse = 'HTTP/1.1 200 OK\r\nContent-Type: text/html; charset=UTF-8\r\n\r\n';
 
