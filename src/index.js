@@ -3,22 +3,23 @@ const net = require('net');
 const { getLocationInfos } = require('./location');
 
 const getHeaderValue = (data, header) => {
+  console.log(data);
   const headerData = data
     .split('\r\n')
     .find((chunk) => chunk.startsWith(header));
-
   return headerData.split(': ').pop();
 };
 
-const startOfResponse = null;
+const startOfResponse = 'HTTP/1.1 200 OK\r\nContent-Type: text/html; charset=UTF-8\r\n\r\n';
 
-const endOfResponse = null;
+const endOfResponse = '\r\n\r\n';
 
 const server = net.createServer((socket) => {
   socket.on('data', (data) => {
-    const clientIP = null;
+    console.log(data);
+    const clientIP = getHeaderValue(data.toString(), 'X-Forwarded-For');
 
-    getLocationInfos(clientIP, (locationData) => {
+    getLocationInfos(clientIP, (_locationData) => {
       socket.write(startOfResponse);
       socket.write('<html><head><meta http-equiv="content-type" content="text/html;charset=utf-8">');
       socket.write('<title>Trybe 🚀</title></head><body>');
